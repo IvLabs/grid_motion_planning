@@ -1,4 +1,4 @@
-# [Compuatational Motion Planning](https://www.coursera.org/learn/robotics-motion-planning/home/welcome)  
+# [Computational Motion Planning](https://www.coursera.org/learn/robotics-motion-planning/home/welcome)  
 
 ## Week 1
 * The goal is to develop techniques that will allow a robot or robots to automatically decide on how to move from one position or configuration to another. Often we are interested in finding a path that minimizes some cost or distance metric.
