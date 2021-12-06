@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name='iris_depth_camera'>
+    <include>
+      <uri>model://iris</uri>
+    </include>
+
+    <include>
+      <uri>model://depth_camera</uri>
+      <pose>0.1 0 0 0 0 0</pose>
+    </include>
+    <link name="camera_optical_link">
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>4.15e-6</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.407e-6</iyy>
+          <iyz>0</iyz>
+          <izz>2.407e-6</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+
+    <joint name="depth_camera_joint" type="fixed">
+      <child>depth_camera::link</child>
+      <parent>iris::base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <upper>0</upper>
+          <lower>0</lower>
+        </limit>
+      </axis>
+    </joint>
+    <joint name="camera_optical_joint" type="fixed">
+      <child>camera_optical_link</child>
+      <parent>depth_camera::link</parent>
+      <pose>0 0 0 -1.5708 0 -1.5708</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <upper>0</upper>
+          <lower>0</lower>
+        </limit>
+      </axis>  
+    </joint>
+
+    <link name="lidar_link">
+      <pose>0 0 0.09 0 0 0</pose>
+      <inertial>
+        
+        <mass>0.19</mass>
+        <inertia>
+          <ixx>4.15e-6</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.407e-6</iyy>
+          <iyz>0</iyz>
+          <izz>2.407e-6</izz>
+        </inertia>
+      </inertial>
+
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.02 0.05 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+
+      <sensor name="laser" type="ray">
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>-1.57</min_angle>
+              <max_angle>1.57</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.2</min>
+            <max>6</max>
+            <resolution>0.05</resolution>
+          </range>
+          
+        </ray>
+        <plugin name="laser" filename="libGpuRayPlugin.so" />
+        <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_laser.so">
+          <topicName>laser/scan</topicName>
+          <frameName>lidar_link</frameName>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>5.5</update_rate>
+        <visualize>true</visualize>
+      </sensor>
+    </link>
+
+ 
+    <joint name="rplidar_joint" type="fixed">
+      <child>lidar_link</child>
+      <parent>iris::base_link</parent>
+      
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <upper>0</upper>
+          <lower>0</lower>
+        </limit>
+      </axis>
+    </joint>
+
+
+  </model>
+</sdf>

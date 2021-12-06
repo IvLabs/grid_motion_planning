@@ -1,0 +1,34 @@
+<launch>
+
+  <include file="$(find quadcopter)/launch/gmap.launch" />
+  
+  
+  
+  
+  <!--<node pkg="rviz" type="rviz" name="rviz"></node>
+  <node pkg="tf" type="static_transform_publisher" name="base_to_support" args="0 0 -0.04 0 0 0 base_link camera_support 100" />
+  <node pkg="tf" type="static_transform_publisher" name="support_to_camlink" args="0 0 -0.045 0 0 0 camera_support camera_link 100" />
+  <node pkg="tf" type="static_transform_publisher" name="base_to_depth" args="0 0 0.045 0 0 0 base_link depth_camera_link 100" />
+  <node pkg="tf" type="static_transform_publisher" name="box_to_depth" args="0 0 0.020 0 0 0 depth_camera_link lidar_base 100" />
+  <node pkg="tf" type="static_transform_publisher" name="lidar_box" args="0 0 0.0255 0 0 0 lidar_base lidar_link 100" />-->
+
+  
+  
+  
+  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+		<param name="resolution" value="0.05" />
+		
+		<!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
+		<param name="frame_id" type="string" value="map" />
+		
+		<!-- maximum range to integrate (speedup!) -->
+		<param name="sensor_model/max_range" value="5.0" />
+		
+		<!-- data source to integrate (PointCloud2) -->
+		<remap from="cloud_in" to="/camera/depth/points" />
+	
+	</node>
+
+  
+
+</launch>
