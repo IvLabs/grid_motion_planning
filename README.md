@@ -1,4 +1,3 @@
-# drone-planning
 
 ## Grid Motion Planning
 In this project, we aim to learn and implement different motion planning algorithms.
