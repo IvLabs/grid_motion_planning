@@ -1,6 +1,6 @@
 # drone-planning
 
-# Grid Motion Planning
+## Grid Motion Planning
 In this project, we aim to learn and implement different motion planning algorithms.
 
 ### Path planning algorithms for point object
