@@ -21,7 +21,7 @@ In this project, we aim to learn and implement different motion planning algorit
 
 
 
-## References
+### References
 
 * [Autonomous Navigation, Part 4: Path Planning with A* and RRT, by MATLAB](https://www.youtube.com/watch?v=QR3U1dgc5RE)
 * [A* playlist by Sebastian Lague](https://www.youtube.com/watch?v=-L-WgKMFuhE)
